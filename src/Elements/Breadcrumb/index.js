@@ -1,7 +1,7 @@
 import React from "react";
 
 import propTypes from "prop-types";
-import Button from "elements/Button";
+import Button from "Elements/Button/index";
 
 import "./index.scss";
 
@@ -35,5 +35,5 @@ export default function Breadcrumb(props) {
 
 Breadcrumb.propTypes = {
   data: propTypes.array,
-  className: propTypes.string
+  className: propTypes.string,
 };
