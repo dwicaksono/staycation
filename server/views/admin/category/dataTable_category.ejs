@@ -1,0 +1,54 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Category</h6> -->
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#add_modal"
+    >
+      Add Category
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.forEach((category,idx) => { %>
+          <tr>
+            <td><%= idx + 1 %></td>
+            <td><%= category.name %></td>
+            <td>
+              <a
+                href="javascript:void()"
+                type="button"
+                class="btn btn-warning btn-sm btn-circle button-update"
+                data-id="<%= category.id %>"
+                data-name="<%= category.name %>"
+                ><i class="fas fa-edit"></i
+              ></a>
+              <a href="#" class="btn btn-danger btn-sm btn-circle"
+                ><i class="fas fa-trash"></i
+              ></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
