@@ -3,7 +3,9 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const flash = require("connect-flash");
 const methodOverride = require("method-override");
+const session = require("express-session");
 //mongoose setup
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/db_staycation", {
@@ -23,6 +25,15 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(flash());
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 },
+  })
+);
 app.use(methodOverride("_method"));
 app.use(logger("dev"));
 app.use(express.json());

@@ -1,7 +1,6 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Category</h6> -->
     <!-- Button trigger modal -->
     <button
       type="button"
@@ -9,7 +8,7 @@
       data-toggle="modal"
       data-target="#add_modal"
     >
-      Add Category
+      <i class="fas fa-plus"></i>
     </button>
   </div>
   <div class="card-body">
@@ -28,25 +27,30 @@
           </tr>
         </thead>
         <tbody>
-          <% categories.forEach((category,idx) => { %>
+          <% for(let i = 0; i < categories.length; i++){ %>
           <tr>
-            <td><%= idx + 1 %></td>
-            <td><%= category.name %></td>
+            <td><%= i + 1 %></td>
+            <td><%= categories[i].name %></td>
             <td>
-              <a
-                href="javascript:void()"
-                type="button"
-                class="btn btn-warning btn-sm btn-circle button-update"
-                data-id="<%= category.id %>"
-                data-name="<%= category.name %>"
-                ><i class="fas fa-edit"></i
-              ></a>
-              <a href="#" class="btn btn-danger btn-sm btn-circle"
-                ><i class="fas fa-trash"></i
-              ></a>
+              <form
+                action="/admin/category/<%= categories[i].id %>?_method=delete"
+                method="POST"
+              >
+                <a
+                  href="javascript:void();"
+                  type="button"
+                  class="btn btn-warning btn-circle btn-sm button-update"
+                  data-id="<%= categories[i].id %>"
+                  data-name="<%= categories[i].name %>"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <button type="submit" class="btn btn-danger btn-circle btn-sm">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
             </td>
           </tr>
-          <% }) %>
+          <% } %>
         </tbody>
       </table>
     </div>
