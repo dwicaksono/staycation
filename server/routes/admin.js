@@ -9,9 +9,11 @@ router.get("/category", adminController.viewCategory);
 router.post("/category", adminController.addCategory);
 router.put("/category", adminController.updateCategory);
 router.delete("/category/:id", adminController.deleteCategory);
-
+// Bank
 router.get("/bank", adminController.viewBank);
 router.post("/bank", upload, adminController.addBank);
+router.put("/bank", upload, adminController.editBank);
+router.delete("/bank/:id", adminController.deleteBank);
 
 router.get("/item", adminController.viewItem);
 router.get("/booking", adminController.viewBooking);
