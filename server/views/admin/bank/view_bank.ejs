@@ -78,13 +78,13 @@ include('../../partials/js.ejs')%>
 <script>
   $("#dataTable").on("click", ".button-update", function () {
     let id = $(this).data("id");
-    let nameBank = $(this).data("nameBank");
-    let nomerRekening = $(this).data("nomerRekening");
+    let nameBank = $(this).data("namebank");
+    let nomerRekening = $(this).data("nomerrekening");
     let name = $(this).data("name");
     $("#edit_bank").modal("show");
     $(".id").val(id);
-    $(".nameBank").val(nameBank);
-    $(".nomerRekening").val(nomerRekening);
+    $(".namebank").val(nameBank);
+    $(".nomerrekening").val(nomerRekening);
     $(".name").val(name);
   });
 </script>

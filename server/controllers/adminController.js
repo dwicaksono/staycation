@@ -107,8 +107,8 @@ module.exports = {
   editBank: async (req, res) => {
     try {
       const { id, nameBank, nomerRekening, name } = req.body;
-      console.log(name, "<<<<<<<<<<<<<<,");
       const bank = await Bank.findOne({ _id: id });
+      console.log(req.file);
       if (req.file === undefined) {
         bank.nameBank = nameBank;
         bank.nomerRekening = nomerRekening;
@@ -129,6 +129,7 @@ module.exports = {
         res.redirect("/admin/bank");
       }
     } catch (error) {
+      console.log(error);
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", "danger");
       res.redirect("/admin/bank");
@@ -137,7 +138,7 @@ module.exports = {
   deleteBank: async (req, res) => {
     try {
       const { id } = req.params;
-      const bank = await bank.findOne({ _id: id });
+      const bank = await Bank.findOne({ _id: id });
       await bank.remove();
       req.flash("alertMessage", "Success Delete Bank");
       req.flash("alertStatus", "success");
