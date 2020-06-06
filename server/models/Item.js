@@ -20,6 +20,7 @@ const itemSchema = new mongoose.Schema({
   },
   isPopular: {
     type: Boolean,
+    default: false,
   },
   description: {
     type: String,
@@ -29,6 +30,7 @@ const itemSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "Category",
   },
+
   imageId: [
     {
       type: ObjectId,

@@ -2,6 +2,8 @@ const fs = require("fs-extra");
 const path = require("path");
 const Category = require("../models/Category");
 const Bank = require("../models/Bank");
+const Item = require("../models/Item");
+const Image = require("../models/Image");
 
 module.exports = {
   viewDashboard: (req, res) => {
@@ -69,7 +71,7 @@ module.exports = {
     }
   },
 
-  // BANK
+  // BANK Control
   viewBank: async (req, res) => {
     try {
       const bank = await Bank.find();
@@ -150,10 +152,64 @@ module.exports = {
     }
   },
 
-  viewItem: (req, res) => {
-    res.render("admin/item/view_item.ejs", { title: "Staycation | Item" });
+  //Item control
+  viewItem: async (req, res) => {
+    try {
+      const item = await Item.find()
+        .populate({ path: `imageId`, select: `id imageUrl` })
+        .populate({ path: `categoryId`, select: `id name` });
+      const category = await Category.find();
+      const image = await Image.find();
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+
+      res.render("admin/item/view_item.ejs", {
+        title: "Staycation | Item",
+        alert,
+        category,
+        item,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", `danger`);
+      res.redirect("/admin/item");
+    }
   },
 
+  addItem: async (req, res) => {
+    try {
+      const { categoryId, title, price, city, country } = req.body;
+      if (req.files.length > 0) {
+        const category = await Category.findOne({ _id: categoryId });
+        const newItem = {
+          categoryId,
+          title,
+          price,
+          city,
+          country,
+          description: "about",
+        };
+        const item = await Item.create(newItem);
+        category.itemId.push({ _id: item._id });
+        await category.save();
+        for (let i = 0; i < req.files.length; i++) {
+          const imageSave = await Image.create({
+            imageUrl: `images/${req.files[i].filename}`,
+          });
+          item.imageId.push({ _id: imageSave._id });
+          await item.save();
+        }
+        req.flash("alertMessage", "Success Add Item");
+        req.flash("alertStatus", "success");
+        res.redirect("/admin/item");
+      }
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", `danger`);
+      res.redirect("/admin/item");
+    }
+  },
   viewBooking: (req, res) => {
     res.render("admin/booking/view_booking.ejs", {
       title: "Staycation | Booking",
