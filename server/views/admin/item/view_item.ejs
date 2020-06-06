@@ -16,6 +16,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <% if(action === "view"){ %>
           <!-- Page Heading -->
           <%- include('../../partials/messageAlert.ejs')%>
           <h1 class="h3 mb-4 text-gray-800">Item</h1>
@@ -44,8 +45,26 @@
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
-            <%- include('./show_item.ejs')%> <%- include('./add_item.ejs')%>
+            <%- include('./show_item.ejs')%> <%- include('./add_item.ejs') %>
           </div>
+          <% } else if(action === "show image"){%>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                data-toggle="tab"
+                href="#image_show"
+                role="tab"
+                aria-controls="show_item"
+                aria-selected="true"
+                >Show Item</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <%- include('./image_show.ejs')%>
+          </div>
+          <% } %>
         </div>
         <!-- /.container-fluid -->
       </div>
