@@ -329,6 +329,10 @@ module.exports = {
       res.redirect("/admin/item");
     }
   },
+
+  //view detail item
+  viewDetailItem: async (req, res) => {},
+
   viewBooking: (req, res) => {
     res.render("admin/booking/view_booking.ejs", {
       title: "Staycation | Booking",

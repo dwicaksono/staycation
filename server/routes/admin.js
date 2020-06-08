@@ -24,6 +24,9 @@ router.get("/item/:id", adminController.showEditItem);
 router.put("/item/:id", uploadMultiple, adminController.EditItem);
 router.delete("/item/:id", adminController.deleteImage);
 
+// Item detail
+router.get("/item/view-detail/:itemId", adminController.viewDetailItem);
+
 router.get("/booking", adminController.viewBooking);
 
 module.exports = router;
