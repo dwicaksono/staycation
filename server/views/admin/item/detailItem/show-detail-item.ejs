@@ -16,16 +16,16 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <% if(action === "view"){ %>
           <!-- Page Heading -->
           <%- include('../../../partials/messageAlert.ejs')%>
           <h1 class="h3 mb-4 text-gray-800">Item</h1>
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a
                 class="nav-link active"
                 data-toggle="tab"
-                href="#show_feature"
+                href="#show-feature"
                 role="tab"
                 aria-controls="show_feature"
                 aria-selected="true"
@@ -36,16 +36,16 @@
               <a
                 class="nav-link"
                 data-toggle="tab"
-                href="#show_detail"
+                href="#show_activity"
                 role="tab"
-                aria-controls="show_detail"
+                aria-controls="show_Activity"
                 aria-selected="false"
-                >Show Detail</a
+                >Show Activity</a
               >
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
-            <%- include('./show_item.ejs')%>
+            <%- include('detail-activity') %> <%- include('detail-feature') %>
           </div>
         </div>
         <!-- /.container-fluid -->
@@ -100,8 +100,23 @@
     </div>
   </div>
 
-  <%- include('../../../partials/js.ejs')%>
+  <%- include('edit-modal-feature.ejs') %> <%-
+  include('../../../partials/js.ejs')%>
   <script>
+    $(document).ready(() => {
+      $(`#dataTableActivity`).DataTable();
+    });
+
     CKEDITOR.replace("about");
+
+    $("#dataTable").on("click", ".button-update", function () {
+      let id = $(this).data("id");
+      let name = $(this).data("name");
+      let qty = $(this).data("qty");
+      $("#edit_feature").modal("show");
+      $(".id").val(id);
+      $(".name").val(name);
+      $(".qty").val(qty);
+    });
   </script>
 </body>

@@ -1,0 +1,81 @@
+<div
+  class="tab-pane fade"
+  id="show_activity"
+  role="tabpanel"
+  aria-labelledby="home-tab"
+>
+  <!-- DataTales-->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3"></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col md-5">
+          <form
+            action="/admin/item/show-detail-item?_method=post"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label for="title">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Enter Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input
+                type="text"
+                class="form-control"
+                name="type"
+                placeholder="Enter Quantity"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="imageUrl">Image</label>
+              <input
+                type="file"
+                class="form-control-file"
+                id="image"
+                name="image"
+                placeholder="image"
+                multiple
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
+        <div class="col md-7">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTableActivity"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Image Url</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

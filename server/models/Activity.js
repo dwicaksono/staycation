@@ -5,7 +5,7 @@ const activitySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  qty: {
+  type: {
     type: Number,
     required: true,
   },

@@ -25,7 +25,10 @@ router.put("/item/:id", uploadMultiple, adminController.EditItem);
 router.delete("/item/:id", adminController.deleteImage);
 
 // Item detail
-router.get("/item/view-detail/:itemId", adminController.viewDetailItem);
+router.get("/item/show-detail-item/:itemId", adminController.viewDetailItem);
+router.post("/item/add/feature", upload, adminController.addFeature);
+router.put("/item/update/feature", upload, adminController.editFeature);
+router.delete("/item/:itemId/feature/:id", adminController.deleteFeature);
 
 router.get("/booking", adminController.viewBooking);
 
