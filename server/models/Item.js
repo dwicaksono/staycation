@@ -26,11 +26,22 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  unit: {
+    type: String,
+    default: "night",
+  },
+  sumBooking: {
+    type: Number,
+    default: 0,
+  },
+  sumBooking: {
+    type: Number,
+    default: 0,
+  },
   categoryId: {
     type: ObjectId,
     ref: "Category",
   },
-
   imageId: [
     {
       type: ObjectId,

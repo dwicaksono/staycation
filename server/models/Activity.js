@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
+
 const activitySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
   type: {
-    type: Number,
+    type: String,
     required: true,
   },
   imageUrl: {
@@ -16,7 +17,7 @@ const activitySchema = new mongoose.Schema({
   isPopular: {
     type: Boolean,
   },
-  item: {
+  itemId: {
     type: ObjectId,
     ref: "Item",
   },
