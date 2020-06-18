@@ -4,6 +4,6 @@ const apiController = require("../controllers/apiController");
 
 router.get("/landing-page", apiController.landingPage);
 router.get("/detail-page/:id", apiController.detailPage);
-router.post("/booking-page", upload, apiController.postBooking);
+router.post("/booking-page", upload, apiController.bookingPage);
 
 module.exports = router;
