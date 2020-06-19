@@ -298,6 +298,7 @@ module.exports = {
         alert,
         item,
         action: "show image",
+        user: req.session.user,
       });
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
@@ -322,6 +323,7 @@ module.exports = {
         item,
         category,
         action: "edit item",
+        user: req.session.user,
       });
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
@@ -329,7 +331,7 @@ module.exports = {
       res.redirect("/admin/item");
     }
   },
-  EditItem: async (req, res) => {
+  editItem: async (req, res) => {
     try {
       const { id } = req.params;
       const { categoryId, title, price, city, country, about } = req.body;

@@ -8,12 +8,15 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 //mongoose setup
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/db_staycation", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(
+  "mongodb://hafsa:0AqXvWXuQC2T63kn@cluster0-shard-00-00-hgc7y.mongodb.net:27017,cluster0-shard-00-01-hgc7y.mongodb.net:27017,cluster0-shard-00-02-hgc7y.mongodb.net:27017/db-staycation?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
